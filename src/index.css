@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cinzel", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Near-black surfaces with a faint warm tint */
+  --color-ink-950: #07070a;
+  --color-ink-900: #0d0d12;
+  --color-ink-800: #15151c;
+  --color-ink-700: #1f1f29;
+  --color-ink-600: #2c2c38;
+  --color-ink-500: #3d3d4c;
+
+  /* Gibborim gold */
+  --color-gold-100: #fbf1d0;
+  --color-gold-200: #f7e3a1;
+  --color-gold-300: #f2cf6b;
+  --color-gold-400: #e9b949;
+  --color-gold-500: #d4a017;
+  --color-gold-600: #b8860b;
+  --color-gold-700: #8a6508;
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-glow: glow 6s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      opacity: 0.55;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.08);
+    }
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply min-h-dvh bg-ink-950 font-sans text-zinc-300 antialiased;
+  }
+
+  ::selection {
+    @apply bg-gold-500/30 text-gold-100;
+  }
+}
+
+@utility text-gold-gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--color-gold-200) 0%,
+    var(--color-gold-400) 45%,
+    var(--color-gold-600) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+@utility glass {
+  @apply border border-white/10 bg-ink-900/70 backdrop-blur-xl;
+}
